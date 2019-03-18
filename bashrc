@@ -84,22 +84,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-function dwn {
-       while true;do
-       wget -T 15 -c $1 && break
-       done
-   }
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias gohome='cd /scratchd/home/rishab/'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -124,11 +112,35 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ "$(whoami)" = "rishab" ]; then
-    exec zsh
-fi
+export CUDA_HOME=/usr/local/cuda-9.0
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib:$LD_LIBRARY_PATH
+export PATH=${CUDA_HOME}/bin:${PATH}
 
-# [ -t 0 ] && [ -f $HOME/local/bin/zsh ] && exec $HOME/local/bin/zsh -l
+# Function to set GPU
+function setgpu {
+	export CUDA_VISIBLE_DEVICES=$1
+}
 
-# added by Anaconda3 installer
-export PATH="/scratchd/home/rishab/anaconda3/bin:$PATH"
+export TMPDIR="/mnt/disk1/praty/tmp/"
+
+# Some Alias
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias th='cd /mnt/disk1/praty/'
+
+alias gpunv='gpustat --color -i 1'
+alias gpunv='watch -c -n 1 gpustat --color'
+
+alias deep='source /mnt/disk1/praty/envs/deep/bin/activate'
+alias deep_cpu='source /mnt/disk1/praty/envs/deep_cpu/bin/activate'
+
+alias space='du -sh *'
+alias kb='kill -9$(jobs -p)'
+
+alias tma='tmux a -t'
+alias tmn='tmux new -s'
+
+
+source /mnt/disk1/praty/envs/deep/bin/activate

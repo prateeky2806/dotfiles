@@ -12,35 +12,35 @@ for i in $(git submodule | sed -e 's/.* //'); do
 	fi
 done
 
-echo "Installing oh-my-zsh"
-echo "===================="
-(sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
-sh -c "mv oh-my-zsh ~/.oh-my-zsh"
-echo "oh-my-zsh installed\n\n"
+#echo "Installing oh-my-zsh"
+#echo "===================="
+#(sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
+#sh -c "mv oh-my-zsh ~/.oh-my-zsh"
+#echo "oh-my-zsh installed\n\n"
 
-echo "Installing zsh theme"
-echo "===================="
-sh -c "cp zsh/themes/* ~/.oh-my-zsh/themes/"
-echo "zsh themes installed\n\n"
+#echo "Installing zsh theme"
+#echo "===================="
+#sh -c "cp zsh/themes/* ~/.oh-my-zsh/themes/"
+#echo "zsh themes installed\n\n"
 
-echo "Installing zsh plugins"
-echo "======================\n\n"
-cd zsh
-echo "Cloning zsh plugins"
-filename="plugins.txt"
-while read in; do
-	git clone $in
-	echo "\n======================================================\n"
-done < $filename
-echo "zsh plugins cloned\n\n"
-cd ..
+#echo "Installing zsh plugins"
+#echo "======================\n\n"
+#cd zsh
+#echo "Cloning zsh plugins"
+#filename="plugins.txt"
+#while read in; do
+#	git clone $in
+#	echo "\n======================================================\n"
+#done < $filename
+#echo "zsh plugins cloned\n\n"
+#cd ..
 
-if [ -d ~/.zshrc ]; then
-    sh -c "mv ~/.zshrc ~/.zshrc.bak"
-    echo "WARN: ~/.zshrc already exists, backing it up"
-    echo "Renamed ~/.zshrc to ~/.zshrc.bak"
-fi
-sh -c "cp -r zsh/zshrc ~/.zshrc"
+#if [ -d ~/.zshrc ]; then
+#    sh -c "mv ~/.zshrc ~/.zshrc.bak"
+#    echo "WARN: ~/.zshrc already exists, backing it up"
+#    echo "Renamed ~/.zshrc to ~/.zshrc.bak"
+#fi
+#sh -c "cp -r zsh/zshrc ~/.zshrc"
 
 echo "Installing vim plugins"
 echo "======================\n\n"
